@@ -22,7 +22,7 @@ jobs:
   # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Setup SSH Keys and known_hosts
       run: |
-        cat ${{ secrets.SSH_PRIVATE_KEY }} > id_rsa
+        echo ${{ secrets.SSH_PRIVATE_KEY }} > id_rsa
         ssh -i id_rsa git@github.com
   
     - uses: wearerequired/git-mirror-action@master
