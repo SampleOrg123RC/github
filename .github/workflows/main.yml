@@ -29,4 +29,4 @@ jobs:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       with:
         source-repo: 'git@github.com:SampleOrg123RC/github.git'
-        destination-repo: 'git@github.org:SampleOrg123RC/internalGit.git'
+        destination-repo: 'git@github.com:SampleOrg123RC/internalGit.git'
