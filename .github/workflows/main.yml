@@ -19,7 +19,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+  # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: Setup SSH Keys and known_hosts
+      run: |
+        cat ${{ secrets.SSH_PRIVATE_KEY }} > id_rsa
+        ssh -i id_rsa git@github.com
+  
     - uses: wearerequired/git-mirror-action@master
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
