@@ -19,15 +19,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-  # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - name: Setup SSH Keys and known_hosts
-      run: |
-        echo ${{ secrets.SSH_PRIVATE_KEY }} > id_rsa
-        ssh -i id_rsa git@github.com
-  
-    - uses: wearerequired/git-mirror-action@master
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+  # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it  
+    - uses: actions/checkout@master
+    - name: repo-sync
+      uses: repo-sync/github-sync@v2
       with:
-        source-repo: 'git@github.com:SampleOrg123RC/github.git'
-        destination-repo: 'git@bitbucket.org:SampleOrg123RC/internalGit.git'
+        source_repo: "git@github:SampleOrg123RC/internalGit"
+        source_branch: "*"
+        destination_branch: "*"
+       # github_token: ${{ secrets.GITHUB_TOKEN }}
